@@ -215,3 +215,21 @@ footer {
         padding: 20px 15px;
     }
 }
+
+.server-selector {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.server-selector label {
+    color: var(--secondary);
+    margin-right: 10px;
+}
+
+.server-selector select {
+    background: var(--dark);
+    color: var(--light);
+    border: 1px solid var(--primary);
+    padding: 8px 15px;
+    border-radius: 5px;
+}

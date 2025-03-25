@@ -12,26 +12,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
     startTestBtn.addEventListener('click', startTest);
 
-    function startTest() {
-        // Reset valores e status
-        pingValue.textContent = '--';
-        downloadValue.textContent = '--';
-        uploadValue.textContent = '--';
-        jitterValue.textContent = '--';
+    function startRealTest() {
+    const test = new SpeedTest();
+    
+    test.onupdate = function(data) {
+        // Atualiza a interface durante o teste
+        if (data.testState === 4) { // Teste de ping
+            document.getElementById('ping-value').textContent = data.ping;
+            updateStatus(document.getElementById('ping-status'), data.ping, [30, 80], true);
+            
+            if (data.jitter) {
+                document.getElementById('jitter-value').textContent = data.jitter;
+                updateStatus(document.getElementById('jitter-status'), data.jitter, [10, 20], true);
+            }
+        }
+        else if (data.testState === 5) { // Download
+            const downloadMbps = (data.download / 1000000).toFixed(2);
+            document.getElementById('download-value').textContent = downloadMbps;
+            updateStatus(document.getElementById('download-status'), downloadMbps, [30, 10], false);
+        }
+        else if (data.testState === 6) { // Upload
+            const uploadMbps = (data.upload / 1000000).toFixed(2);
+            document.getElementById('upload-value').textContent = uploadMbps;
+            updateStatus(document.getElementById('upload-status'), uploadMbps, [20, 10], false);
+        }
         
-        // Reset barras de status
-        pingStatus.style.width = '0%';
-        downloadStatus.style.width = '0%';
-        uploadStatus.style.width = '0%';
-        jitterStatus.style.width = '0%';
-        
-        // Desabilitar botão durante o teste
-        startTestBtn.disabled = true;
-        startTestBtn.textContent = 'TESTANDO...';
-        
-        // Simular progresso (em um site real, isso seria substituído por testes reais)
-        simulateTest();
-    }
+        document.getElementById('progress-bar').style.width = `${data.progress}%`;
+    };
+    
+    test.onend = function(data) {
+        document.getElementById('start-test').disabled = false;
+        document.getElementById('start-test').textContent = 'NOVO TESTE';
+        document.getElementById('progress-bar').style.width = '0%';
+        showTipsBasedOnResults();
+    };
+    
+    test.start();
+}
+
+// Modifique o event listener para usar a nova função
+document.getElementById('start-test').addEventListener('click', startRealTest);
 
     function simulateTest() {
         let progress = 0;
@@ -107,9 +127,46 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.width = width;
     }
 
-    function showTipsBasedOnResults() {
-        // Esta função poderia ser expandida para mostrar dicas específicas
-        // baseadas nos resultados dos testes
-        console.log("Mostrar dicas baseadas nos resultados");
+    function testPacketLoss() {
+    const results = {
+        lost: 0,
+        total: 10
+    };
+    
+    for(let i = 0; i < results.total; i++) {
+        fetch('https://google.com') // Substitua por seu endpoint
+            .catch(() => results.lost++);
     }
+    
+    setTimeout(() => {
+        const packetLoss = (results.lost / results.total) * 100;
+        console.log(`Perda de pacotes: ${packetLoss}%`);
+        // Você pode adicionar isto à sua interface depois
+    }, 5000);
+}
+
+function showTipsBasedOnResults() {
+    const ping = parseFloat(document.getElementById('ping-value').textContent);
+    const download = parseFloat(document.getElementById('download-value').textContent);
+    const upload = parseFloat(document.getElementById('upload-value').textContent);
+    
+    let tips = "";
+    
+    if (ping > 100) {
+        tips += "<li>Seu ping está alto para jogos competitivos. Tente conectar via cabo em vez de Wi-Fi</li>";
+    }
+    
+    if (download < 10) {
+        tips += "<li>Sua velocidade de download pode causar problemas em jogos com atualizações grandes</li>";
+    }
+    
+    if (upload < 5) {
+        tips += "<li>Sua velocidade de upload pode afetar a qualidade de chamadas de voz no jogo</li>";
+    }
+    
+    document.querySelector('.gamer-tips ul').innerHTML = tips;
+    
+    // Opcional: executar teste de pacotes perdidos
+    testPacketLoss();
+}
 });
