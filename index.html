@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer Speed Test - Teste sua conexão para jogos online</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="assets/images/logo.png" alt="Gamer Speed Test" class="logo">
+            <h1>GAMER SPEED TEST</h1>
+            <p>Teste sua conexão para jogos online</p>
+        </header>
+
+        <main>
+            <div class="speed-test-container">
+                <div class="test-button-container">
+                    <button id="start-test" class="btn-gamer">INICIAR TESTE</button>
+                </div>
+
+                <div class="results">
+                    <div class="result-box">
+                        <h3>PING</h3>
+                        <div id="ping-value" class="value">--</div>
+                        <div class="unit">ms</div>
+                        <div class="status" id="ping-status"></div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>DOWNLOAD</h3>
+                        <div id="download-value" class="value">--</div>
+                        <div class="unit">Mbps</div>
+                        <div class="status" id="download-status"></div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>UPLOAD</h3>
+                        <div id="upload-value" class="value">--</div>
+                        <div class="unit">Mbps</div>
+                        <div class="status" id="upload-status"></div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>JITTER</h3>
+                        <div id="jitter-value" class="value">--</div>
+                        <div class="unit">ms</div>
+                        <div class="status" id="jitter-status"></div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <div class="gamer-tips">
+                <h2>Dicas para melhorar sua conexão</h2>
+                <ul>
+                    <li>Use conexão por cabo em vez de Wi-Fi</li>
+                    <li>Feche outros programas que usam internet</li>
+                    <li>Atualize seu roteador</li>
+                    <li>Verifique servidores próximos ao seu jogo</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2023 Gamer Speed Test | Desenvolvido para gamers</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

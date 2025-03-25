@@ -1,0 +1,217 @@
+:root {
+    --primary: #6a5acd;
+    --secondary: #9370db;
+    --dark: #1a1a2e;
+    --light: #f8f8ff;
+    --accent: #ff6b6b;
+    --good: #4caf50;
+    --medium: #ff9800;
+    --bad: #f44336;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Oxanium', cursive;
+    background-color: var(--dark);
+    color: var(--light);
+    background-image: url('assets/images/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(26, 26, 46, 0.8);
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(106, 90, 205, 0.5);
+}
+
+header p {
+    font-size: 1.2rem;
+    color: var(--secondary);
+}
+
+.speed-test-container {
+    background: rgba(30, 30, 50, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--primary);
+}
+
+.test-button-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn-gamer {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(106, 90, 205, 0.4);
+}
+
+.btn-gamer:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(106, 90, 205, 0.6);
+}
+
+.btn-gamer:active {
+    transform: translateY(1px);
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.result-box {
+    background: rgba(40, 40, 70, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--secondary);
+}
+
+.result-box h3 {
+    color: var(--secondary);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--light);
+    margin: 10px 0;
+}
+
+.unit {
+    color: var(--secondary);
+    font-size: 1rem;
+}
+
+.status {
+    height: 10px;
+    width: 100%;
+    background: #333;
+    border-radius: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.progress-container {
+    width: 100%;
+    background: #333;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.3s ease;
+}
+
+.gamer-tips {
+    background: rgba(30, 30, 50, 0.7);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+    border: 1px solid var(--secondary);
+}
+
+.gamer-tips h2 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.gamer-tips ul {
+    list-style-type: none;
+}
+
+.gamer-tips li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(147, 112, 219, 0.3);
+    position: relative;
+    padding-left: 25px;
+}
+
+.gamer-tips li:before {
+    content: "▶";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-top: 50px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .results {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .results {
+        grid-template-columns: 1fr;
+    }
+    
+    .speed-test-container, .gamer-tips {
+        padding: 20px 15px;
+    }
+}
